@@ -9,6 +9,7 @@ import {
 import './App.css';
 import Home from "./Components/Home/Home";
 import NoMatch from "./Components/NoMatch/NoMatch";
+import Register from "./Components/Register/Register";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           <Route path="/home">
               <Home />
           </Route>
+          <Route  path="/register/:charityname">
+              <Register></Register>
+            </Route>
           <Route  path="*">
               <NoMatch/>
           </Route>

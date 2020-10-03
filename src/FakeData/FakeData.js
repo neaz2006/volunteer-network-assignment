@@ -1,7 +1,7 @@
 const FakeData = [
     {
         "id": 1,
-        "name": 'Child Support',
+        "name": 'ChildSupport',
         "images":'https://i.ibb.co/jrxSL0g/child-Support.png'
     },
     {
