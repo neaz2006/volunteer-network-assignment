@@ -1,0 +1,8 @@
+
+body{
+    background-image: url('../../Images/images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 935px;
+    width: 100%;
+}
