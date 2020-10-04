@@ -7,8 +7,8 @@ import FakeData from '../../FakeData/FakeData';
 import Charity from '../Charitys/Charity';
 
 const Home = () => {
-    const vew = FakeData ;
-    const [charitys , setCharitys] = useState(vew[0] );
+    const show = FakeData ;
+    const [charitys , setCharitys] = useState(show[0] );
     console.log(FakeData);
     return (
         <>
@@ -18,7 +18,7 @@ const Home = () => {
             <h3>{charitys.length}</h3>
             <div className="row">
                 {
-                    vew .map(charity => <Charity charity={charity}></Charity>)
+                    show.map(charity => <Charity charity={charity}></Charity>)
                 }
             </div>
         </div>
