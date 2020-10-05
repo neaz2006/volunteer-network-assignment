@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import './Register.css'
@@ -7,26 +7,52 @@ import { UserContext } from '../../App';
 
 const Register = () => {
     const {charityname} = useParams();
-    const [loggedInUser, setLoggedInUser]= useContext(UserContext)
-    const history = useHistory();
+    const [loggedInUser, setLoggedinUser]= useContext(UserContext);
+    const[input, setInput]=useState({
+        name:"",
+        email: "",
+        date: "",
+        disicription: "",
+        charityname: "",
+    });
+    useEffect(()=>{
+        setInput({
+            ...input,
+            name:loggedInUser.name,
+            email:loggedInUser.email,
+            charityname: charityname,
+        })
+    },[])
+    const handleChangeInput = (e) => {
+        setInput({...input,[e.target.name]:e.target.value})
+        };
+    const history= useHistory()
     const handleSubmit = () =>{
-        history.push("/Humanity");
-    };
-
-   
+        history.push('/Humanity');
+         fetch('http://localhost:5000/addHumanaty',{
+           method: 'POST', 
+           headers: {'Content-Type': 'application/json'},
+           body: JSON.stringify(input)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
     return (
         <div className="from-body">
             <Link to="/" className='text-white logo'><img className="logo" src={logo} alt="" /></Link>            
             <Form className="from">    
                 <h2>Registar as a volunteer</h2>            
                 <Form.Group controlId="formGroupEmail">                    
-                    <Form.Control className="control" type="text" defaultValue={loggedInUser.name} />
-                    <Form.Control className="control" type="email"  defaultValue={loggedInUser.email} />
-                    <Form.Control className="control" type="date" placeholder="Date" />
-                    <Form.Control className="control" type="text" placeholder="Disicription" />
-                    <Form.Control className="control" type="text"  defaultValue={charityname} />
+                    <Form.Control onChange={(e)=>handleChangeInput(e)} name="name" className="control" type="text" defaultValue={loggedInUser.name} />
+                    <Form.Control onChange={(e)=>handleChangeInput(e)} name="email" className="control" type="email" defaultValue={loggedInUser.email} />
+                    <Form.Control onChange={(e)=>handleChangeInput(e)} name="date" className="control" type="date" value={input.date} placeholder="Date" />
+                    <Form.Control onChange={(e)=>handleChangeInput(e)} name="disicription" className="control"  value={input.disicription} type="text" placeholder="Disicription" />
+                    <Form.Control onChange={(e)=>handleChangeInput(e)} name="charityname" className="control" type="text"  defaultValue={charityname} />
+                   
                 </Form.Group>
-                <Button className="button" variant="primary" type="submit" onClick={handleSubmit}>Registation</Button>
+                <Button onClick={handleSubmit} className="button" type="submit" variant="primary" >Registation</Button>
             </Form>
         </div>
     );
