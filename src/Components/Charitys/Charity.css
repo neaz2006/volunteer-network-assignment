@@ -1,9 +1,12 @@
+.cullam:hover {
+    text-decoration: none;
+    color: black;
+  }
 .cullam >img{
     height: 250px;
 }
 .cullam >h1{
     font-size: 30px;
-    background-color: orange;
     color: aliceblue;
     margin: auto;
     width: 85%;

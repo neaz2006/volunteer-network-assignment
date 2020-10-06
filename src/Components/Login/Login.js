@@ -7,7 +7,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import logo from '../../Images/logos/Group 1329.png';
 import google from '../../Images/logos/google.png'
-import './Ligin.css'
+import './Login.css'
 
 
 

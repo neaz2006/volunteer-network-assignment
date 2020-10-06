@@ -1,0 +1,13 @@
+.card{
+    background-color: aliceblue;
+    margin: 10px;
+    padding: 40px;
+    margin-top: 50px;
+}
+.card > img{
+    width: 150px;
+    margin: auto;
+}
+.card-body{
+    float: right;
+}
