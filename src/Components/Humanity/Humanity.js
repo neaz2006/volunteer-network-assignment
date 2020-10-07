@@ -1,32 +1,50 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import './Humanity.css'
 import extVolunteerimg from '../../Images/images/extraVolunteer.png'
 import Header from '../Header/Header';
 import { UserContext } from '../../App';
+import { useHistory } from 'react-router-dom';
 
 const Humanity = () => {
+
     const [humanitys, sethumanitys] = useState([]);
+    console.log(humanitys);
+    const{ _id ,name ,date} = humanitys
+    const [loggedInUser, setLoggedinUser] = useContext(UserContext)
     useEffect(() => {
-        fetch('http://localhost:5000/humanatys')
+        fetch('http://localhost:5000/humanatys?email=' + loggedInUser.email)
             .then(res => res.json())
-            .then(data => sethumanitys(data));
-            console.log('data');
-    },[])
+            .then(data => sethumanitys(data));;
+    }, [])
+
+    const history = useHistory();
+    const handleCancle = (id) => {
+        console.log(id);
+        fetch(`http://localhost:5000/delete/${id}`, {
+            method: 'DELETE'
+        })
+          .then(res => res.json())
+          .then(data => {
+            alert('Data delete successfully');
+          })
+      }
     return (
         <>
             <Header></Header>
             <h1>{humanitys.length}</h1>
+
             <div className="row ">
                 {
                     humanitys.map(donate =>
                         <Container className="col-5 col-md-5 col-sm-6 mr-auto card">
 
+                            <h1>{donate._id}</h1>
                             <img src={extVolunteerimg} alt="" />
                             <div className="card-body">
-                            <h4>{donate.name}</h4>
-                            <p>{donate.date}</p>
-                            <button className="btn btn-primary">Cancle</button>
+                                <h4>{donate.name}</h4>
+                                <p>{donate.date}</p>
+                                <Button onClick={() => handleCancle(_id)} className='float-right' variant='secondary'>Cancle </Button>
                             </div>
 
 
