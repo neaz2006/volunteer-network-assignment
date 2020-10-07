@@ -7,6 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import './App.css';
+import DataDelete from './Components/DataDelete/DataDelete';
 import Home from "./Components/Home/Home";
 import Humanity from './Components/Humanity/Humanity';
 import Login from './Components/Login/Login';
@@ -37,6 +38,9 @@ function App() {
             </Route>
             <Route path="/humanity">
               <Humanity></Humanity>
+            </Route>
+            <Route path="/datadelate">
+              <DataDelete></DataDelete>
             </Route>
             <Route path="*">
               <NoMatch />

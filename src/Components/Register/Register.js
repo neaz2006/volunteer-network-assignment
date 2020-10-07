@@ -30,7 +30,7 @@ const Register = () => {
     const history = useHistory()
     const handleSubmit = () => {
         history.push('/Humanity');
-        fetch('http://localhost:5000/addHumanaty', {
+        fetch('https://agile-journey-22250.herokuapp.com/humanatys/addHumanaty', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(input)

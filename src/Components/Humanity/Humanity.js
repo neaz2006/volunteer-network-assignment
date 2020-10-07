@@ -13,7 +13,7 @@ const Humanity = () => {
     const{ _id ,name ,date} = humanitys
     const [loggedInUser, setLoggedinUser] = useContext(UserContext)
     useEffect(() => {
-        fetch('http://localhost:5000/humanatys?email=' + loggedInUser.email)
+        fetch('https://agile-journey-22250.herokuapp.com/humanatys?email=' + loggedInUser.email)
             .then(res => res.json())
             .then(data => sethumanitys(data));;
     }, [])
@@ -21,12 +21,13 @@ const Humanity = () => {
     const history = useHistory();
     const handleCancle = (id) => {
         console.log(id);
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://agile-journey-22250.herokuapp.com/delete/${id}`, {
             method: 'DELETE'
         })
           .then(res => res.json())
           .then(data => {
             alert('Data delete successfully');
+            history.push('/DataDelate');
           })
       }
     return (
