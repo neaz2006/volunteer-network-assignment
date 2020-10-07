@@ -38,13 +38,11 @@ const Humanity = () => {
                 {
                     humanitys.map(donate =>
                         <Container className="col-5 col-md-5 col-sm-6 mr-auto card">
-
-                            <h1>{donate._id}</h1>
                             <img src={extVolunteerimg} alt="" />
                             <div className="card-body">
                                 <h4>{donate.name}</h4>
                                 <p>{donate.date}</p>
-                                <Button onClick={() => handleCancle(_id)} className='float-right' variant='secondary'>Cancle </Button>
+                                <Button onClick={() => handleCancle(donate._id)} className='float-right' variant='primary'>Cancle </Button>
                             </div>
 
 
